@@ -12,17 +12,33 @@ Install via [npm](http://npmjs.org/)
 
     npm install google-translate --save
 
-USAGE
-----------
-
-**Require**
-
+Initialize with your API key ([get one](https://developers.google.com/translate/v2/pricing)).
+  
     var googleTranslate = require('google-translate')(apiKey);
 
-If you don't have an API key, [get one here](https://developers.google.com/translate/v2/pricing).
-  
-*Note*: All callbacks are passed an error and data argument: `callback(err, data)`.
 
+# Usage
+
+**Callbacks**: All methods take a callback as their last parameter. Upon method completion, callbacks are passed an error if exists (otherwise null), followed by a response object or array: `callback(err, data)`.
+
+**Bulk translations**:  Passing an array of strings greater than 2k characters will be result in multiple concurrent asynchronous calls. Once all calls are completed, the response will be parsed, merged, and  passed to the callback.
+
+### Translate
+
+    translate(strings, source, target, callback)
+    
+* **strings**: Required. Can be a string or an array of strings
+* **source**: Optional. Google will autodetect the source locale if not specified. [Available languages](https://developers.google.com/translate/v2/using_rest#target)
+* **target**:  Required. Language to translate to. [Available languages](https://developers.google.com/translate/v2/using_rest#target)
+* **callback**:  Required.
+
+*Example*: Translate a string
+
+    googleTranslate.translate('Hello', 'en', 'de', function(err, translation){
+      if (err) return console.log(err);
+      console.log(translation);
+      // => { translatedText: "Hallo", originalText: "Hello" }
+    });
   
   
 Contribute
