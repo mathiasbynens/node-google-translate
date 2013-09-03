@@ -20,14 +20,14 @@ Require module and pass in your API key ([get one here](https://developers.googl
   
     var googleTranslate = require('google-translate')(apiKey);
     
-Translate a string
+String translation:
 
     googleTranslate.translate('My name is Brandon', 'es', function(err, translation) {
       console.log(translation.translatedText);
       // =>  Mi nombre es Brandon
     });
 
-Detect language of string
+Language detection:
 
     googleTranslate.detectLanguage('Gracias', function(err, detection) {
       console.log(detection.language);
