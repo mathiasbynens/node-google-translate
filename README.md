@@ -3,7 +3,7 @@ Google Translate API for Node
 
 A Node.js module for working with the [Google Translate API](https://developers.google.com/translate/v2/using_rest). 
 
-Makes multiple concurrent API calls when translating a large number of strings.
+Automatically handles bulk translations that exceed the Google Translation API query limit.
 
 Installation
 ----------
