@@ -32,14 +32,63 @@ Initialize with your API key ([get one](https://developers.google.com/translate/
 * **target**:  Required. Language to translate to. [Available languages](https://developers.google.com/translate/v2/using_rest#target)
 * **callback**:  Required.
 
-*Example*: Translate a string
+*Example*: Translate a string to German (de) and autodetect source language
 
-    googleTranslate.translate('Hello', 'en', 'de', function(err, translation){
-      if (err) return console.log(err);
+    googleTranslate.translate('Hello', 'de', function(err, translation){
       console.log(translation);
-      // => { translatedText: "Hallo", originalText: "Hello" }
+      // =>  { translatedText: 'Hallo', originalText: 'Hello', detectedSourceLanguage: 'en' }
+    });
+
+*Example*: Translate an array of English (en) strings to German (de)
+
+    googleTranslate.translate(['Hello', 'Thank you'], 'en', 'de', function(err, translations){
+      console.log(translations);
+      // =>  [{ translatedText: 'Hallo', originalText: 'Hello' }, ...]
     });
   
+### Detect language
+
+    detectLanguage(strings, callback)
+    
+* **strings**: Required. Can be a string or an array of strings
+* **callback**:  Required.
+ 
+*Example*: Detect language from a string
+
+    googleTranslate.detectLanguage('Hello', function(err, detection){
+      console.log(detection);
+      // =>  { language: "en", isReliable: false, confidence: 0.5714286, originalText: "Hello" }
+    });
+
+*Example*: Detect language from an array of strings
+
+    googleTranslate.detectLanguage(['Hello', 'Danke'], function(err, detections){
+      console.log(detections);
+      // =>  [{ language: "en", isReliable: false, confidence: 0.5714286, originalText: "Hello" }, ...]
+    });
+
+
+### Get available language
+
+    getAvailableLanguages(target, callback)
+    
+* **target**: Optional. If specified, response will include the name of the language translated to the specified target language
+* **callback**:  Required.
+
+*Example*: Get all available language codes
+
+    googleTranslate.getAvailableLanguages(function(err, languageCodes){
+      console.log(languageCodes);
+      // => ['af', 'ar', 'be', 'bg', 'ca', 'cs', ...]
+    });
+    
+*Example*: Get all available language codes with language names in German
+
+    googleTranslate.getAvailableLanguages('de', function(err, languageCodes){
+      console.log(languageCodes);
+      // => [{ language: "en", name: "Englisch" }, ...]
+    });
+
   
 Contribute
 ----------
