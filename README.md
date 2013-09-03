@@ -42,6 +42,8 @@ Language detection:
 
 ### Translate
 
+Translate one or more strings.
+
     translate(strings, source, target, callback)
     
 * **strings**: Required. Can be a string or an array of strings
@@ -65,6 +67,8 @@ Language detection:
   
 ### Detect language
 
+Detect language of string or each string in an array.
+
     detectLanguage(strings, callback)
     
 * **strings**: Required. Can be a string or an array of strings
@@ -86,6 +90,8 @@ Language detection:
 
 
 ### Get supported languages
+
+Retrieve all languages supported by the Google Translate API.
 
 
     getSupportedLanguages(target, callback)
