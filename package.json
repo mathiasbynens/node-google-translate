@@ -8,12 +8,25 @@
     "type": "git",
     "url": "git://github.com/Paton/node-google-translate"
   },
+  "contributors": [{
+    "name": "Brandon Paton",
+    "email": "bp@brandonpaton.com"
+  }],
+  "keywords": [
+    "translate",
+    "google translate",
+    "translations"
+  ],
   "main": "lib/main.js",
   "dependencies": {
     "async": "~0.2.6",
     "request": "~2.27.0",
     "underscore": "~1.5.1"    
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.6"
+  }
 }
 
