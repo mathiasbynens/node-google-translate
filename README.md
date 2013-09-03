@@ -3,7 +3,7 @@ Google Translate API for Node
 
 A Node.js module for working with the [Google Translate API](https://developers.google.com/translate/v2/using_rest). 
 
-Makes multiple concurrent API calls when input exceeds Google's maximum query length.
+Makes multiple concurrent API calls when translating a large number of strings.
 
 Installation
 ----------
@@ -12,16 +12,33 @@ Install via [npm](http://npmjs.org/)
 
     npm install google-translate --save
 
-Initialize with your API key ([get one](https://developers.google.com/translate/v2/pricing)).
+
+Usage overview
+----------
+
+Require module and pass in your API key ([get one here](https://developers.google.com/translate/v2/pricing)).
   
     var googleTranslate = require('google-translate')(apiKey);
+    
+Translate a string
 
+    googleTranslate.translate('My name is Brandon', 'es', function(err, translation) {
+      console.log(translation.translatedText);
+      // =>  Mi nombre es Brandon
+    });
 
-# Usage
+Detect language of string
+
+    googleTranslate.detectLanguage('Gracias', function(err, detection) {
+      console.log(detection.language);
+      // =>  es
+    });
+
+# API
 
 **Callbacks**: All methods take a callback as their last parameter. Upon method completion, callbacks are passed an error if exists (otherwise null), followed by a response object or array: `callback(err, data)`.
 
-**Bulk translations**:  Passing an array of strings greater than 2k characters will be result in multiple concurrent asynchronous calls. Once all calls are completed, the response will be parsed, merged, and  passed to the callback.
+**Bulk translations**:  Passing an array of strings greater than 2k characters will be result in multiple concurrent asynchronous calls. Once all calls are completed, the response will be parsed, merged, and  passed to the callback. The default maximum concurrent requests is 10. You can override this value by passing in a new limit when you pass in your API key: `require('google-translate')(apiKey, concurrentLimit)`
 
 ### Translate
 
@@ -34,14 +51,14 @@ Initialize with your API key ([get one](https://developers.google.com/translate/
 
 *Example*: Translate a string to German (de) and autodetect source language
 
-    googleTranslate.translate('Hello', 'de', function(err, translation){
+    googleTranslate.translate('Hello', 'de', function(err, translation) {
       console.log(translation);
       // =>  { translatedText: 'Hallo', originalText: 'Hello', detectedSourceLanguage: 'en' }
     });
 
 *Example*: Translate an array of English (en) strings to German (de)
 
-    googleTranslate.translate(['Hello', 'Thank you'], 'en', 'de', function(err, translations){
+    googleTranslate.translate(['Hello', 'Thank you'], 'en', 'de', function(err, translations) {
       console.log(translations);
       // =>  [{ translatedText: 'Hallo', originalText: 'Hello' }, ...]
     });
@@ -62,46 +79,44 @@ Initialize with your API key ([get one](https://developers.google.com/translate/
 
 *Example*: Detect language from an array of strings
 
-    googleTranslate.detectLanguage(['Hello', 'Danke'], function(err, detections){
+    googleTranslate.detectLanguage(['Hello', 'Danke'], function(err, detections) {
       console.log(detections);
       // =>  [{ language: "en", isReliable: false, confidence: 0.5714286, originalText: "Hello" }, ...]
     });
 
 
-### Get available language
+### Get supported languages
 
-    getAvailableLanguages(target, callback)
+
+    getSupportedLanguages(target, callback)
     
 * **target**: Optional. If specified, response will include the name of the language translated to the specified target language
 * **callback**:  Required.
 
-*Example*: Get all available language codes
+*Example*: Get all supported language codes
 
-    googleTranslate.getAvailableLanguages(function(err, languageCodes){
+    googleTranslate.getSupportedLanguages(function(err, languageCodes) {
       console.log(languageCodes);
       // => ['af', 'ar', 'be', 'bg', 'ca', 'cs', ...]
     });
     
-*Example*: Get all available language codes with language names in German
+*Example*: Get all supported language codes with language names in German
 
-    googleTranslate.getAvailableLanguages('de', function(err, languageCodes){
+    googleTranslate.getSupportedLanguages('de', function(err, languageCodes) {
       console.log(languageCodes);
       // => [{ language: "en", name: "Englisch" }, ...]
     });
 
   
-Contribute
-----------
+# Contribute
 
 Forks and pull requests welcome!
 
-TODO
-----------
+# TODO
 * Make POST instead of GET requests when query is greater than 2k. Limit for POST is 5k
 * Add tests
 * Design a better way of defining API keys to allow use of multiple Google Translate API keys
 
-Author
-----------
+# Author
 
 Brandon Paton. Email me if you have any questions: [bp@brandonpaton.com](mailto:bp@brandonpaton.com).
