@@ -2,16 +2,18 @@
   "author": "Brandon Paton <bp@brandonpaton.com>",
   "name": "google-translate",
   "description": "Google Translate API for Node.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/paton/node-google-translate",
   "repository": {
     "type": "git",
     "url": "git://github.com/paton/node-google-translate"
   },
-  "contributors": [{
-    "name": "Brandon Paton",
-    "email": "bp@brandonpaton.com"
-  }],
+  "contributors": [
+    {
+      "name": "Brandon Paton",
+      "email": "bp@brandonpaton.com"
+    }
+  ],
   "keywords": [
     "translate",
     "google translate",
@@ -21,7 +23,8 @@
   "dependencies": {
     "async": "~0.2.6",
     "request": "~2.27.0",
-    "underscore": "~1.5.1"    
+    "underscore": "~1.5.1",
+    "ent": "~0.1.0"
   },
   "devDependencies": {},
   "license": "MIT",
@@ -29,4 +32,3 @@
     "node": ">=0.6"
   }
 }
-
