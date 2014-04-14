@@ -44,7 +44,7 @@ Language detection:
 
 Translate one or more strings.
 
-    translate(strings, source, target, callback)
+    googleTranslate.translate(strings, source, target, callback)
     
 * **strings**: Required. Can be a string or an array of strings
 * **source**: Optional. Google will autodetect the source locale if not specified. [Available languages](https://developers.google.com/translate/v2/using_rest#target)
