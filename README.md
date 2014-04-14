@@ -69,7 +69,7 @@ Translate one or more strings.
 
 Detect language of string or each string in an array.
 
-    detectLanguage(strings, callback)
+    googleTranslate.detectLanguage(strings, callback)
     
 * **strings**: Required. Can be a string or an array of strings
 * **callback**:  Required.
@@ -94,7 +94,7 @@ Detect language of string or each string in an array.
 Retrieve all languages supported by the Google Translate API.
 
 
-    getSupportedLanguages(target, callback)
+    googleTranslate.getSupportedLanguages(target, callback)
     
 * **target**: Optional. If specified, response will include the name of the language translated to the specified target language
 * **callback**:  Required.
