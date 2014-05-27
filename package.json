@@ -22,9 +22,9 @@
   "main": "lib/main.js",
   "dependencies": {
     "async": "~0.2.6",
+    "he": "~0.4.1",
     "request": "~2.27.0",
-    "underscore": "~1.5.1",
-    "ent": "~0.1.0"
+    "underscore": "~1.5.1"
   },
   "devDependencies": {},
   "license": "MIT",
